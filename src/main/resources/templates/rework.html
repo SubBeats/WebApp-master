@@ -1,0 +1,17 @@
+<#import "blocks/template.html" as t>
+<@t.template user>
+    <h3>Добавить</h3>
+    <form action="/models/create" method="post" enctype="multipart/form-data">
+        Производитель (${model.author}) <input type="text" name="author"><br><br>
+        Цена (${model.price}) <input type ="number" name="price"><br><br>
+        Наименование  (${model.title}) <input type ="text" name="title"><br><br>
+        Описание (${model.description}) <input type ="text" name="description"><br><br>
+<#--        Первая фотография: <input type="file" name="file1"/><br><br>
+        Вторая фотография: <input type="file" name="file2"/><br><br>
+        Третья фотография: <input type="file" name="file3"/><br><br>-->
+        <#--<input type="date" name="date">-->
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Изменить"/>
+
+    </form>
+</@t.template>

@@ -1,0 +1,46 @@
+<#import "blocks/template.html" as t>
+<@t.template user>
+<h1>Панель администратора</h1>
+<table  class="table ">
+    <thead class="thead-dark">
+    <tr>
+        <th>Производитель</th>
+        <th>Наименование</th>
+        <th>Описание</th>
+        <th>Удалить</th>
+        <th>Изменить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list products as product>
+        <tr>
+            <th>${product.author}</th>
+            <th>${product.title}</th>
+            <th>
+                <div>
+                    <p><a href="/Order/model/${product.ID}"> Подробнее... </a></p>
+                </div>
+            </th>
+            <th>
+                <form action="/model/delete/${product.ID}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="submit" value="Удалить товар"/>
+                </form>
+            </th>
+            <th>
+                <form action="/model/rework/${product.ID}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="submit" value="Изменить товар"/>
+                </form>
+            </th>
+    <#else > <h2>Помещений нет</h2>
+    </#list>
+    </tbody>
+</table>
+
+    <h1 style="text-align: center">Добавить элемент</h1>
+    <form method="get" action="/models/create">
+        <button style="width: 100%" type="submit" class="btn btn-dark">Добавить</button>
+        <hr>
+    </form>
+</@t.template>
